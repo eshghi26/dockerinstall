@@ -54,9 +54,10 @@ local_ip="$(ip --json a s | jq -r '.[] | if .ifname == "ens192" then .addr_info[
 cat > /etc/default/kubelet << EOF
 KUBELET_EXTRA_ARGS=--node-ip=$local_ip
 EOF
-export IPADDR="192.168.1.25" #Replace your master node with this IP address
+export IPADDR="192.168.1.25" #Replace your master node IP with this IP address
 export NODENAME=$(hostname -s)
 export POD_CIDR="10.1.0.0/16"
+echo "192.168.1.25 Master01" >> /etc/hosts #Replace your master node IP with this IP address
 sudo kubeadm init --apiserver-advertise-address=$IPADDR  --apiserver-cert-extra-sans=$IPADDR  --pod-network-cidr=$POD_CIDR --node-name $NODENAME --ignore-preflight-errors Swap
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
