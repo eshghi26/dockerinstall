@@ -29,7 +29,7 @@ net.ipv4.ip_forward                 = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 sudo sysctl --system
-export OS="xUbuntu_20.04" #Replace your distribute repo name with "xUbuntu_20.04"
+export OS="xUbuntu_20.04" #Replace your OS distributaion repo name with "xUbuntu20.04"
 export VERSION="1.28"
 cat <<EOF | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /
