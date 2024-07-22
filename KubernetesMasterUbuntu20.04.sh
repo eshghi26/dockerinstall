@@ -47,8 +47,8 @@ sudo apt-get update
 sudo rm -rf /etc/apt/keyrings
 sudo mkdir /etc/apt/keyrings
 sudo touch /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-sudo echo -e 'y' | apt-get install -y apt-transport-https ca-certificates curl gpg
-sudo curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+sudo echo -e 'y' | curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list #Change url address based on you OS distribution
 sudo apt-get update -y
 sudo apt-get install -y kubelet kubeadm kubectl
