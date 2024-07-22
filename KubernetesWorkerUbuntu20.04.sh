@@ -43,8 +43,9 @@ sudo apt-get update
 sudo apt-get install cri-o cri-o-runc cri-tools -y
 sudo systemctl daemon-reload
 sudo systemctl enable crio --now
-sudo mkdir /etc/apt/keyrings -y
-sudo touch /etc/apt/keyrings/kubernetes-apt-keyring.gpg -y
+sudo rm -rf /etc/apt/keyrings
+sudo mkdir /etc/apt/keyrings
+sudo touch /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
 sudo curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
@@ -53,7 +54,7 @@ sudo apt-get update -y
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 sudo apt-get install -y jq
-local_ip="$(ip --json a s | jq -r '.[] | if .ifname == "ens192" then .addr_info[] | if .family == "inet" then .local else empty end else empty end')" #Replace your interface name
+local_ip="$(ip --json a s | jq -r '.[] | if .ifname == "enp0s8" then .addr_info[] | if .family == "inet" then .local else empty end else empty end')" #Replace your interface name
 cat > /etc/default/kubelet << EOF
 KUBELET_EXTRA_ARGS=--node-ip=$local_ip
 EOF
