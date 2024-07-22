@@ -43,8 +43,8 @@ sudo apt-get update
 sudo apt-get install cri-o cri-o-runc cri-tools -y
 sudo systemctl daemon-reload
 sudo systemctl enable crio --now
-sudo rm -rf /etc/apt/keyrings
-sudo mkdir /etc/apt/keyrings
+# sudo rm -rf /etc/apt/keyrings
+# sudo mkdir /etc/apt/keyrings
 sudo touch /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
